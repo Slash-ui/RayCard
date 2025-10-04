@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "background-1",
+      "description": "A colorful bokeh effect.",
+      "imageUrl": "https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg",
+      "imageHint": "colorful bokeh"
+    }
+  ]
+}
