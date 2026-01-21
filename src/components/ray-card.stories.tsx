@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { RayCard } from './ray-card';
 
 const meta: Meta<typeof RayCard> = {
@@ -92,9 +92,6 @@ export const CustomStyling: Story = {
 };
 
 export const DarkContent: Story = {
-  parameters: {
-    backgrounds: { default: 'dark' },
-  },
   args: {
     children: (
       <div className="text-center">
@@ -104,5 +101,10 @@ export const DarkContent: Story = {
         </p>
       </div>
     ),
+  },
+  globals: {
+    backgrounds: {
+      value: "dark"
+    }
   },
 };
