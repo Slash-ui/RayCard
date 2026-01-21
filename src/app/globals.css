@@ -68,26 +68,33 @@
 }
 
 @layer components {
-  .luminous-box {
-    @apply relative overflow-hidden rounded-2xl border border-white/20 p-8;
-    background-color: rgba(240, 248, 255, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+  .ray-card {
+    @apply relative overflow-hidden rounded-2xl p-8;
+    transition: box-shadow 0.3s ease-out;
+    backdrop-filter: blur(15px) saturate(140%);
+    background-color: rgba(240, 248, 255, 0.1);
+    border: 1px solid rgba(240, 248, 255, 0.25);
   }
 
-  .dark .luminous-box {
-    background-color: hsl(var(--secondary) / 0.3);
+  .dark .ray-card::after {
+    background-color: hsl(var(--secondary) / 0.1);
   }
 
-  .luminous-box::before {
+  .ray-card::after {
+    @apply content-[''] absolute inset-0 rounded-2xl;
+    background-color: rgba(240, 248, 255, 0.1);
+    z-index: 0;
+  }
+
+  .ray-card::before {
     @apply content-[''] absolute inset-0 rounded-2xl p-px;
     background: radial-gradient(
-      800px circle at var(--mouse-x) var(--mouse-y),
+      400px circle at var(--mouse-x) var(--mouse-y),
       hsl(45 100% 70% / 0.9),
       hsl(var(--primary)),
-      transparent 70%
+      transparent 20%
     );
-    opacity: var(--light-opacity, 0);
+    opacity: var(--light-opacity, 0.2);
     transition: opacity 0.3s ease-out;
     mask:
       linear-gradient(#fff 0 0) content-box,
@@ -97,5 +104,19 @@
       linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
+    z-index: 2;
+  }
+
+  .ray-card-glow {
+    @apply absolute inset-0 rounded-2xl;
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.3),
+      transparent 50%
+    );
+    opacity: var(--light-opacity, 0);
+    transition: opacity 0.3s ease-out;
+    z-index: 1;
+    mix-blend-mode: soft-light;
   }
 }

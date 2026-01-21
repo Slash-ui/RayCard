@@ -1,6 +1,5 @@
-import { LuminousBox } from '@/components/luminous-box';
+import { RayCard } from '@/components/ray-card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Sparkles } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Home() {
@@ -20,19 +19,16 @@ export default function Home() {
         />
       )}
       <div className="relative z-10 w-full max-w-md">
-        <LuminousBox>
+        <RayCard>
           <div className="flex flex-col items-center text-center">
-            <div className="mb-4 rounded-full bg-primary/20 p-3 ring-1 ring-inset ring-primary/30">
-              <Sparkles className="h-8 w-8 text-primary-foreground" />
-            </div>
             <h1 className="text-3xl font-bold text-foreground">
-              Luminous Border
+              Testing Header
             </h1>
-            <p className="mt-2 text-muted-foreground">
-              Move your cursor around to see the light effect on the border.
+            <p className="mt-2 text-foreground text-justify">
+            Ready to take the next step? Don't let your big ideas wait. Join thousands of satisfied customers who are already building their dreams with our tools. Sign up today for a free 14-day trial to unlock all premium features, or schedule a personalized demo with one of our experts to see how we can tailor a solution just for you. Your journey to success starts now.
             </p>
           </div>
-        </LuminousBox>
+        </RayCard>
       </div>
     </main>
   );

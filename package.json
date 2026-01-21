@@ -1,6 +1,7 @@
 {
-  "name": "nextn",
-  "version": "0.1.0",
+  "name": "ray-card",
+  "version": "1.0.0",
+  "description": "Interactive glassmorphism card component with cursor-tracking lighting effects",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 9002",
@@ -9,7 +10,9 @@
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@genkit-ai/google-genai": "^1.20.0",
@@ -56,12 +59,23 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-links": "^8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/nextjs": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@storybook/react-webpack5": "^8.4.7",
+    "@storybook/test": "^8.4.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "genkit-cli": "^1.20.0",
     "postcss": "^8",
+    "storybook": "^8.4.7",
     "tailwindcss": "^3.4.1",
+    "ts-loader": "^9.5.1",
     "typescript": "^5"
   }
 }
