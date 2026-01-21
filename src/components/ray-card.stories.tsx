@@ -70,15 +70,6 @@ const meta: Meta<typeof RayCard> = {
         defaultValue: { summary: "false" },
       },
     },
-    theme: {
-      control: { type: "radio" },
-      options: ["light", "dark"],
-      description:
-        "Theme variant - affects card background, border, and default glow",
-      table: {
-        defaultValue: { summary: "dark" },
-      },
-    },
     glowMode: {
       control: { type: "radio" },
       options: ["both", "card", "border"],
@@ -104,6 +95,11 @@ export const Default: Story = {
         </p>
       </div>
     ),
+
+    glowIntensity: 0.3,
+    glowSpread: 550,
+    proximity: 15,
+    glowMode: "both"
   },
 };
 
@@ -311,52 +307,6 @@ export const CallToAction: Story = {
         <button className="px-6 py-2 bg-white text-gray-900 rounded-lg font-medium hover:opacity-90 transition-opacity">
           Get Started
         </button>
-      </div>
-    ),
-  },
-};
-
-export const LightTheme: Story = {
-  parameters: {
-    backgrounds: { default: "light" },
-  },
-  args: {
-    theme: "light",
-    children: (
-      <div style={{ textAlign: "center" }}>
-        <h2
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "bold",
-            marginBottom: "0.5rem",
-          }}
-        >
-          Light Theme
-        </h2>
-        <p>Dark text on light background with subtle dark glow</p>
-      </div>
-    ),
-  },
-};
-
-export const DarkTheme: Story = {
-  parameters: {
-    backgrounds: { default: "dark" },
-  },
-  args: {
-    theme: "dark",
-    children: (
-      <div style={{ textAlign: "center" }}>
-        <h2
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "bold",
-            marginBottom: "0.5rem",
-          }}
-        >
-          Dark Theme
-        </h2>
-        <p>Light text on dark background with white glow</p>
       </div>
     ),
   },

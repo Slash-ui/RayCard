@@ -1,6 +1,13 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
+import {
+  isValidCssColor,
+  isValidBorderRadius,
+  clampNumber,
+  VALIDATION_DEFAULTS,
+  VALIDATION_RANGES,
+} from "../utils/validation";
 
 function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -38,6 +45,28 @@ export function RayCard({
   disabled = false,
   glowMode = "both",
 }: RayCardProps) {
+  // Sanitize and validate props to prevent CSS injection
+  const safeGlowColor = isValidCssColor(glowColor) ? glowColor : VALIDATION_DEFAULTS.glowColor;
+  const safeGlowIntensity = clampNumber(
+    glowIntensity,
+    VALIDATION_RANGES.glowIntensity.min,
+    VALIDATION_RANGES.glowIntensity.max,
+    VALIDATION_DEFAULTS.glowIntensity
+  );
+  const safeGlowSpread = clampNumber(
+    glowSpread,
+    VALIDATION_RANGES.glowSpread.min,
+    VALIDATION_RANGES.glowSpread.max,
+    VALIDATION_DEFAULTS.glowSpread
+  );
+  const safeBorderRadius = isValidBorderRadius(borderRadius) ? borderRadius : VALIDATION_DEFAULTS.borderRadius;
+  const safeProximity = clampNumber(
+    proximity,
+    VALIDATION_RANGES.proximity.min,
+    VALIDATION_RANGES.proximity.max,
+    VALIDATION_DEFAULTS.proximity
+  );
+
   const boxRef = useRef<HTMLDivElement>(null);
   const [isNear, setIsNear] = useState(false);
   const [isInside, setIsInside] = useState(false);
@@ -54,10 +83,10 @@ export function RayCard({
       const y = e.clientY - rect.top;
 
       const isCursorNearBorder =
-        e.clientX > rect.left - proximity &&
-        e.clientX < rect.right + proximity &&
-        e.clientY > rect.top - proximity &&
-        e.clientY < rect.bottom + proximity;
+        e.clientX > rect.left - safeProximity &&
+        e.clientX < rect.right + safeProximity &&
+        e.clientY > rect.top - safeProximity &&
+        e.clientY < rect.bottom + safeProximity;
 
       const isCursorInsideBox =
         e.clientX >= rect.left &&
@@ -91,7 +120,7 @@ export function RayCard({
 
         const distFromCenter = Math.sqrt(dx * dx + dy * dy);
         const maxDist =
-          Math.sqrt(centerX * centerX + centerY * centerY) + proximity;
+          Math.sqrt(centerX * centerX + centerY * centerY) + safeProximity;
 
         const spread = 1 + (distFromCenter / maxDist) * 15;
         const blur = 10 + (distFromCenter / maxDist) * 30;
@@ -123,12 +152,12 @@ export function RayCard({
         box.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [disabled, proximity]);
+  }, [disabled, safeProximity]);
 
   const effectiveIntensity = disabled
     ? 0
     : isNear || isInside
-      ? glowIntensity
+      ? safeGlowIntensity
       : 0;
 
   return (
@@ -138,12 +167,12 @@ export function RayCard({
       style={
         {
           "--light-opacity": effectiveIntensity,
-          "--glow-color": glowColor,
-          "--border-radius": borderRadius,
+          "--glow-color": safeGlowColor,
+          "--border-radius": safeBorderRadius,
           position: "relative",
           padding: "24px",
           backdropFilter: "blur(10px)",
-          borderRadius,
+          borderRadius: safeBorderRadius,
           // No overflow hidden here because it might clip shadows if we adjusted them,
           // but currently shadow is simulated via CSS variables on the element itself.
           // Actually, we do need overflow hidden or borderRadius on inner elements to match.
@@ -164,7 +193,7 @@ export function RayCard({
             position: "absolute",
             inset: 0,
             pointerEvents: "none",
-            background: `radial-gradient(${glowSpread}px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${glowColor}, transparent 40%)`,
+            background: `radial-gradient(${safeGlowSpread}px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${safeGlowColor}, transparent 40%)`,
             opacity: effectiveIntensity,
             transition: "opacity 0.3s ease-out",
           }}
@@ -181,7 +210,7 @@ export function RayCard({
               inset: 0,
               borderRadius: "inherit",
               padding: "1px",
-              background: `radial-gradient(${glowSpread}px circle at var(--mouse-x) var(--mouse-y), ${glowColor}, transparent 100%)`,
+              background: `radial-gradient(${safeGlowSpread}px circle at var(--mouse-x) var(--mouse-y), ${safeGlowColor}, transparent 100%)`,
               mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
               WebkitMask:
                 "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
