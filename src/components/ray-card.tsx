@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useRef, useEffect, useState } from "react";
 
 function cn(...classes: (string | undefined | null | false)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export interface RayCardProps {
@@ -25,12 +27,16 @@ export function RayCard({ children, className }: RayCardProps) {
 
       const distance = 32;
       const isCursorNearBorder =
-        (e.clientX > rect.left - distance && e.clientX < rect.right + distance) &&
-        (e.clientY > rect.top - distance && e.clientY < rect.bottom + distance);
+        e.clientX > rect.left - distance &&
+        e.clientX < rect.right + distance &&
+        e.clientY > rect.top - distance &&
+        e.clientY < rect.bottom + distance;
 
       const isCursorInsideBox =
-        e.clientX >= rect.left && e.clientX <= rect.right &&
-        e.clientY >= rect.top && e.clientY <= rect.bottom;
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
 
       setIsNear(isCursorNearBorder);
       setIsInside(isCursorInsideBox);
@@ -57,19 +63,19 @@ export function RayCard({ children, className }: RayCardProps) {
         const shadowY = (-dy / centerY) * maxShadowOffset;
 
         const distFromCenter = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = Math.sqrt(centerX * centerX + centerY * centerY) + distance;
+        const maxDist =
+          Math.sqrt(centerX * centerX + centerY * centerY) + distance;
 
         const spread = 1 + (distFromCenter / maxDist) * 15;
         const blur = 10 + (distFromCenter / maxDist) * 30;
 
-        box.style.setProperty('--shadow-x', `${shadowX}px`);
-        box.style.setProperty('--shadow-y', `${shadowY}px`);
-        box.style.setProperty('--shadow-blur', `${blur}px`);
-        box.style.setProperty('--shadow-spread', `${spread}px`);
-        box.style.setProperty('--shadow-opacity', `0.2`);
-
+        box.style.setProperty("--shadow-x", `${shadowX}px`);
+        box.style.setProperty("--shadow-y", `${shadowY}px`);
+        box.style.setProperty("--shadow-blur", `${blur}px`);
+        box.style.setProperty("--shadow-spread", `${spread}px`);
+        box.style.setProperty("--shadow-opacity", `0.2`);
       } else {
-        box.style.setProperty('--shadow-opacity', '0');
+        box.style.setProperty("--shadow-opacity", "0");
       }
     };
 
@@ -77,7 +83,7 @@ export function RayCard({ children, className }: RayCardProps) {
       setIsNear(false);
       setIsInside(false);
       if (boxRef.current) {
-        boxRef.current.style.setProperty('--shadow-opacity', '0');
+        boxRef.current.style.setProperty("--shadow-opacity", "0");
       }
     };
 
@@ -96,11 +102,14 @@ export function RayCard({ children, className }: RayCardProps) {
     <div
       ref={boxRef}
       className={cn("ray-card", className)}
-      style={{
-        '--light-opacity': (isNear || isInside) ? 1 : 0,
-        boxShadow: 'var(--shadow-x, 0px) var(--shadow-y, 0px) var(--shadow-blur, 20px) var(--shadow-spread, 0px) rgba(0, 0, 0, var(--shadow-opacity, 0))',
-        transition: 'box-shadow 0.3s ease-out, opacity 0.3s ease-out',
-      } as React.CSSProperties}
+      style={
+        {
+          "--light-opacity": isNear || isInside ? 1 : 0,
+          boxShadow:
+            "var(--shadow-x, 0px) var(--shadow-y, 0px) var(--shadow-blur, 20px) var(--shadow-spread, 0px) rgba(0, 0, 0, var(--shadow-opacity, 0))",
+          transition: "box-shadow 0.3s ease-out, opacity 0.3s ease-out",
+        } as React.CSSProperties
+      }
     >
       <div className="ray-card-glow" />
       <div className="relative z-10">{children}</div>

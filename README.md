@@ -1,168 +1,137 @@
 # RayCard
 
-A React component that creates glassmorphism cards with interactive, cursor-tracking lighting effects. The glow follows your mouse and casts dynamic shadows - like having a tiny flashlight in your browser.
+Interactive glassmorphism card component with cursor-tracking lighting effects.
 
-![RayCard Demo](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![React](https://img.shields.io/badge/React-18+-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6.svg)
+![RayCard Demo](https://raw.githubusercontent.com/yourusername/ray-card/main/demo.gif)
 
-## What it does
+## Features
 
-RayCard wraps your content in a frosted-glass container that responds to cursor movement:
+- **Glassmorphism design** - Beautiful frosted glass effect
+- **Cursor tracking** - Dynamic lighting that follows your mouse
+- **Dark/Light mode** - Works on any background
+- **Responsive** - Looks great on all screen sizes
+- **Zero dependencies** - Pure React with no external runtime deps
 
-- **Border glow** - A warm golden light traces the edges where your cursor hovers
-- **Inner luminosity** - Soft white light fills the card interior
-- **Dynamic shadows** - Shadows shift based on the "light source" position
-- **Smooth transitions** - Everything animates with 0.3s ease-out
+## Installation
 
-## Quick Start
+```bash
+# npm
+npm install ray-card
+
+# yarn
+yarn add ray-card
+
+# pnpm
+pnpm add ray-card
+```
+
+## Usage
 
 ```tsx
-import { RayCard } from '@/components/ray-card';
+import { RayCard } from "ray-card";
+import "ray-card/dist/styles.css";
 
 function App() {
   return (
     <RayCard>
-      <h1>Hello World</h1>
-      <p>Move your cursor around!</p>
+      <h2>Hello World</h2>
+      <p>Move your cursor to see the lighting effect!</p>
     </RayCard>
   );
 }
 ```
 
-That's it. No props required.
-
-## Installation
-
-This is a Next.js project. Clone it and install dependencies:
-
-```bash
-git clone git@github.com:Slash-ui/RayCard.git
-cd RayCard
-npm install
-npm run dev
-```
-
-The dev server runs on `http://localhost:9002`.
-
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | required | Content inside the card |
-| `className` | `string` | `undefined` | Additional Tailwind classes |
+| Prop        | Type        | Default | Description             |
+| ----------- | ----------- | ------- | ----------------------- |
+| `children`  | `ReactNode` | -       | Content inside the card |
+| `className` | `string`    | `''`    | Additional CSS classes  |
 
-### Adding custom styles
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- Yarn or npm
+
+### Running Storybook
+
+Storybook is the primary way to develop and preview the component:
+
+```bash
+# Install dependencies
+yarn install
+
+# Start Storybook (opens at http://localhost:6006)
+yarn storybook
+```
+
+### Available Scripts
+
+| Script                 | Description                  |
+| ---------------------- | ---------------------------- |
+| `yarn storybook`       | Start Storybook dev server   |
+| `yarn build-storybook` | Build static Storybook       |
+| `yarn typecheck`       | Run TypeScript type checking |
+| `yarn lint`            | Run ESLint                   |
+
+### Project Structure
+
+```
+ray-card/
+├── src/
+│   ├── components/
+│   │   ├── ray-card.tsx          # Main component
+│   │   ├── ray-card.stories.tsx  # Storybook stories
+│   │   └── luminous-box.tsx      # Related component
+│   ├── lib/
+│   │   └── utils.ts              # Utility functions
+│   └── globals.css               # Global styles
+├── .storybook/                   # Storybook configuration
+└── package.json
+```
+
+## Customization
+
+### Custom Styling
+
+Pass a `className` prop to customize the appearance:
 
 ```tsx
-<RayCard className="min-w-[400px] p-12">
-  {/* your content */}
+<RayCard className="min-w-[400px] p-8">
+  <p>Custom sized card</p>
 </RayCard>
 ```
 
-The `className` prop merges with the base styles, so you can override padding, dimensions, or add your own utilities.
+### CSS Variables
 
-## How the lighting works
-
-The component tracks mouse position and updates CSS custom properties in real-time:
-
-```
---mouse-x, --mouse-y    → cursor position relative to card
---shadow-x, --shadow-y  → shadow offset (opposite to light)
---shadow-blur           → 10-40px based on distance from center
---shadow-spread         → 1-16px based on distance from center
---light-opacity         → 0 or 1 (activates within 32px of card)
-```
-
-The effect activates when your cursor is within 32px of the card edges. Inside the card, shadow movement is dampened by 50% for a subtler effect.
-
-## Styling
-
-RayCard uses these CSS classes (defined in `globals.css`):
-
-- `.ray-card` - Base container with glassmorphism
-- `.ray-card::before` - Border glow effect
-- `.ray-card::after` - Background layer
-- `.ray-card-glow` - Inner light effect
-
-### Customizing the glow color
-
-Edit the gradient in `globals.css`:
+Override these CSS variables to customize the component:
 
 ```css
-.ray-card::before {
-  background: radial-gradient(
-    400px circle at var(--mouse-x) var(--mouse-y),
-    hsl(45 100% 70% / 0.9),    /* change this for different glow color */
-    hsl(var(--primary)),
-    transparent 20%
-  );
+.ray-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --light-opacity: 0;
+  --shadow-x: 0px;
+  --shadow-y: 0px;
+  --shadow-blur: 20px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0;
 }
 ```
 
-### Dark mode
-
-RayCard works in dark mode out of the box. The component respects your Tailwind dark mode setup.
-
-## Project Structure
-
-```
-src/
-├── components/
-│   └── ray-card.tsx       # The main component
-├── app/
-│   ├── globals.css        # Component styles + Tailwind config
-│   └── page.tsx           # Demo page
-```
-
-## Scripts
-
-```bash
-npm run dev          # Start dev server (port 9002)
-npm run build        # Production build
-npm run storybook    # Component playground (port 6006)
-```
-
-## Storybook
-
-We have Storybook set up for playing with the component:
-
-```bash
-npm run storybook
-```
-
-Check out different variants: Default, WithContent, CallToAction, CustomStyling, and DarkContent.
-
 ## Browser Support
 
-Works in all modern browsers that support:
-- `backdrop-filter`
-- CSS custom properties
-- `mask-composite`
-
-Basically, anything released after 2020.
-
-## Tech Stack
-
-- Next.js 15
-- React 18
-- TypeScript
-- Tailwind CSS
-- Storybook 8
-
-## Contributing
-
-Found a bug? Want to add a feature? PRs welcome.
-
-1. Fork the repo
-2. Create a branch (`git checkout -b cool-feature`)
-3. Make your changes
-4. Push and open a PR
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
 ## License
 
-MIT - do whatever you want with it.
+MIT © [Your Name]
 
----
+## Contributing
 
-Built by [@shariati](https://github.com/shariati)
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) first.
