@@ -1,0 +1,108 @@
+/* Blueprint Grid Background */
+.sb-show-main.sb-main-padded {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size:
+    100px 100px,
+    100px 100px,
+    20px 20px,
+    20px 20px;
+  background-position:
+    -1px -1px,
+    -1px -1px,
+    -1px -1px,
+    -1px -1px;
+}
+
+/* Blueprint text styling */
+.docs-story {
+  color: #e8f4fc;
+}
+
+/* Blueprint aesthetic for cards */
+.ray-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(135, 206, 250, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(135, 206, 250, 0.1),
+    inset 0 0 30px rgba(135, 206, 250, 0.02);
+}
+
+/* Blueprint glow effect - cyan tint */
+.ray-card-glow {
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(135, 206, 250, 0.15),
+    transparent 40%
+  );
+}
+
+/* Blueprint border glow */
+.ray-card-border-glow {
+  opacity: 0.8;
+}
+
+/* Technical/monospace feel for code elements */
+code, pre, .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+/* Blueprint annotation style text */
+.blueprint-text {
+  color: #87ceeb;
+  text-shadow: 0 0 10px rgba(135, 206, 250, 0.3);
+  letter-spacing: 0.05em;
+}
+
+/* Blueprint dimension lines */
+.blueprint-dimension {
+  position: relative;
+}
+
+.blueprint-dimension::before,
+.blueprint-dimension::after {
+  content: '';
+  position: absolute;
+  background: rgba(135, 206, 250, 0.5);
+}
+
+/* Storybook docs panel styling */
+.sbdocs.sbdocs-wrapper {
+  background: #0a3d62;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.sbdocs.sbdocs-content {
+  color: #e8f4fc;
+}
+
+/* Blueprint corner markers */
+.sb-show-main.sb-main-padded::before {
+  content: '';
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  border-left: 2px solid rgba(135, 206, 250, 0.4);
+  border-top: 2px solid rgba(135, 206, 250, 0.4);
+  pointer-events: none;
+}
+
+.sb-show-main.sb-main-padded::after {
+  content: '';
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-right: 2px solid rgba(135, 206, 250, 0.4);
+  border-bottom: 2px solid rgba(135, 206, 250, 0.4);
+  pointer-events: none;
+}

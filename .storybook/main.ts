@@ -11,6 +11,7 @@ const require = createRequire(import.meta.url);
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-docs'],
+  staticDirs: ['../src/assets', '.'],
 
   framework: {
     name: '@storybook/react-webpack5',

@@ -1,4 +1,6 @@
-import '../src/globals.css';
+import '../src/css/globals.css';
+import '../src/css/neomorphism.css';
+import neomorphismTheme from './neomorphism-theme';
 
 export const parameters = {
   controls: {
@@ -7,28 +9,30 @@ export const parameters = {
       date: /Date$/i,
     },
   },
+  docs: {
+    theme: neomorphismTheme,
+  },
   backgrounds: {
-    default: 'blueprint',
+    default: 'neomorphism',
     values: [
       {
-        name: 'blueprint',
-        value: '#004a99', // Classic blueprint blue
+        name: 'neomorphism',
+        value: '#e8ecef',
       },
       {
-        name: 'light-blueprint',
-        value: '#337ab7', // Lighter blue
+        name: 'neomorphism-dark',
+        value: '#2d3748',
+      },
+      {
+        name: 'neomorphism-warm',
+        value: '#f5f0e8',
       },
     ],
-    grid: {
-      cellSize: 20,
-      opacity: 0.5,
-      color: '#ffffff', // White grid lines
-    },
   },
 };
 
 export const initialGlobals = {
   backgrounds: {
-    value: 'light'
-  }
+    value: 'neomorphism',
+  },
 };
