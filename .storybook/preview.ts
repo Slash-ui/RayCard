@@ -10,13 +10,13 @@ export const parameters = {
   backgrounds: {
     options: {
       dark: { name: 'dark', value: '#0a0a0a' },
-      light: { name: 'light', value: '#ffffff' }
+      light: { name: 'light', value: '#e1e1dfff' }
     }
   },
 };
 
 export const initialGlobals = {
   backgrounds: {
-    value: 'dark'
+    value: 'light'
   }
 };
