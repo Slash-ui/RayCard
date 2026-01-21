@@ -6,7 +6,7 @@ export default create({
   // Brand - Slash UI
   brandTitle: 'RayCard by Slash UI',
   brandUrl: 'https://slashui.com',
-  brandImage: '/slashui-logo.svg',
+  brandImage: 'https://www.slashui.com/logo/logo-slashui-full-light.svg',
   brandTarget: '_blank',
 
   // Typography
