@@ -13,9 +13,8 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# npm
+dist/
 
 # production
 /build
@@ -46,3 +45,4 @@ firestore-debug.log
 
 # storybook
 storybook-static/
+

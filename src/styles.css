@@ -1,0 +1,24 @@
+/* RayCard Base Styles */
+.ray-card {
+  position: relative;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.ray-card-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+
+.ray-card-border-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}

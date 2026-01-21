@@ -1,9 +1,56 @@
 {
-  "name": "ray-card",
+  "name": "@slash-ui/ray-card",
   "version": "1.0.0",
   "description": "Interactive glassmorphism card component with cursor-tracking lighting effects",
-  "private": true,
+  "author": "Amin Shariati <amin.shariati@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Slash-ui/RayCard.git"
+  },
+  "homepage": "https://slash-ui.github.io/RayCard/",
+  "bugs": {
+    "url": "https://github.com/Slash-ui/RayCard/issues"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "glassmorphism",
+    "card",
+    "ui",
+    "cursor-tracking",
+    "lighting",
+    "glow",
+    "interactive",
+    "react19"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
+    "build": "tsup && cp src/styles.css dist/styles.css",
+    "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint src/",
@@ -37,6 +84,7 @@
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.1",
     "ts-loader": "^9.5.1",
+    "tsup": "^8.5.1",
     "typescript": "^5",
     "vitest": "^4.0.17",
     "webpack": "^5"
