@@ -9,8 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@slash-ui/ray-card"><img src="https://img.shields.io/npm/v/@slash-ui/ray-card?color=blue&label=npm" alt="npm version" /></a>
-  <a href="https://github.com/Slash-ui/RayCard/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@slash-ui/ray-card?color=green" alt="license" /></a>
+  <a href="https://www.npmjs.com/package/@slashui/ray-card"><img src="https://img.shields.io/npm/v/@slashui/ray-card?color=blue&label=npm" alt="npm version" /></a>
+  <a href="https://github.com/Slash-ui/RayCard/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@slashui/ray-card?color=green" alt="license" /></a>
+  <a href="https://www.npmjs.com/package/@slashui/ray-card"><img src="https://img.shields.io/npm/dm/@slashui/ray-card?color=orange&label=downloads" alt="npm downloads" /></a>
   <a href="https://github.com/Slash-ui/RayCard/actions/workflows/deploy-storybook.yml"><img src="https://github.com/Slash-ui/RayCard/actions/workflows/deploy-storybook.yml/badge.svg" alt="Storybook Deployment" /></a>
   <a href="https://slash-ui.github.io/RayCard/"><img src="https://img.shields.io/badge/docs-storybook-ff4785" alt="Storybook" /></a>
   <img src="https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript&logoColor=white" alt="TypeScript" />
@@ -60,13 +61,13 @@ Explore the component in our interactive Storybook:
 
 ```bash
 # npm
-npm install @slash-ui/ray-card
+npm install @slashui/ray-card
 
 # yarn
-yarn add @slash-ui/ray-card
+yarn add @slashui/ray-card
 
 # pnpm
-pnpm add @slash-ui/ray-card
+pnpm add @slashui/ray-card
 ```
 
 ---
@@ -74,7 +75,7 @@ pnpm add @slash-ui/ray-card
 ## Usage
 
 ```tsx
-import { RayCard } from "@slash-ui/ray-card";
+import { RayCard } from "@slashui/ray-card";
 
 function App() {
   return (

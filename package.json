@@ -1,6 +1,6 @@
 {
-  "name": "@slash-ui/ray-card",
-  "version": "1.0.0",
+  "name": "@slashui/ray-card",
+  "version": "1.2.0",
   "description": "Interactive glassmorphism card component with cursor-tracking lighting effects",
   "author": "Amin Shariati <amin.shariati@gmail.com>",
   "license": "MIT",
